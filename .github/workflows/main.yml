@@ -1,0 +1,37 @@
+
+name: Tech-Challenge3
+on:
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  check-application-users-consumer:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies user consumer
+      working-directory: ./UserConsumer
+      run: dotnet restore
+    - name: Build project user consumer
+      working-directory: ./UserConsumer
+      run: dotnet build --no-restore
+  check-application-schedule-service:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies schedule service
+      working-directory: ./ScheduleService
+      run: dotnet restore
+    - name: Build project schedule service
+      working-directory: ./ScheduleService
+      run: dotnet build --no-restore
+    - name: Test project schedule service
+      working-directory: ./ScheduleService
+      run: dotnet test
