@@ -6,6 +6,9 @@ WORKDIR /src
 COPY ["TechChallenge/RegistrationService.csproj", "TechChallenge/"]
 COPY ["Infraestructure/Infraestructure.csproj", "Infraestructure/"]
 COPY ["Domain/Domain.csproj", "Domain/"]
+COPY ["Common/Common.csproj", "Common/"]
+COPY ["Integration/Integration.csproj", "Integration/"]
+
 RUN dotnet restore "TechChallenge/RegistrationService.csproj"
 COPY . .
 WORKDIR "/src/TechChallenge"
@@ -17,5 +20,5 @@ RUN dotnet publish "RegistrationService.csproj" -c Release -o /app/publish /p:Us
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-EXPOSE 7070
+EXPOSE 8080
 ENTRYPOINT ["dotnet", "RegistrationService.dll"]

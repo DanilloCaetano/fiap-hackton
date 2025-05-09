@@ -4,7 +4,9 @@ using Common.MessagingService.QueuesConfig;
 using Domain.Doctor.Model;
 using Domain.Doctor.Model.Enum;
 using Domain.Doctor.Repository;
+using Domain.User.Model;
 using Domain.User.Model.Dto;
+using Domain.User.Repository;
 
 namespace Domain.Doctor.Service
 {

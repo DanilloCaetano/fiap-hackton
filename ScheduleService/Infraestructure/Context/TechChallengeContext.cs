@@ -3,6 +3,7 @@ using Domain.MockData.DoctorMock;
 using Domain.MockData.PatientMock;
 using Domain.Patient.Model;
 using Domain.Schedule.Model;
+using Domain.User.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructure.Context
@@ -21,6 +22,7 @@ namespace Infraestructure.Context
         public virtual DbSet<DoctorEntity> Doctors { get; set; }
         public virtual DbSet<ScheduleDoctorEntity> SchedulesDoctor { get; set; }
         public virtual DbSet<ScheduleEntity> Schedules { get; set; }
+        public virtual DbSet<UserEntity> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
