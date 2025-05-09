@@ -3,19 +3,20 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["TechChallenge/RegistrationService.csproj", "TechChallenge/"]
+COPY ["UserConsumer/UserConsumer.csproj", "UserConsumer/"]
 COPY ["Infraestructure/Infraestructure.csproj", "Infraestructure/"]
 COPY ["Domain/Domain.csproj", "Domain/"]
-RUN dotnet restore "TechChallenge/RegistrationService.csproj"
+COPY ["Common/Common.csproj", "Common/"]
+RUN dotnet restore "UserConsumer/UserConsumer.csproj"
 COPY . .
-WORKDIR "/src/TechChallenge"
-RUN dotnet build "RegistrationService.csproj" -c Release -o /app/build
+WORKDIR "/src/UserConsumer"
+RUN dotnet build "UserConsumer.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "RegistrationService.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "UserConsumer.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-EXPOSE 7070
-ENTRYPOINT ["dotnet", "RegistrationService.dll"]
+EXPOSE 6060
+ENTRYPOINT ["dotnet", "UserConsumer.dll"]

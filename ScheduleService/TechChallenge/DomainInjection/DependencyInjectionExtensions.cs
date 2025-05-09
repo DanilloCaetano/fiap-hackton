@@ -6,10 +6,13 @@ using Domain.Patient.Repository;
 using Domain.Patient.Service;
 using Domain.Schedule.Repository;
 using Domain.Schedule.Service;
+using Domain.User.Repository;
+using Domain.User.Service;
 using Infraestructure.Context;
 using Infraestructure.Repository.Doctor;
 using Infraestructure.Repository.Patient;
 using Infraestructure.Repository.Schedule;
+using Infraestructure.Repository.User;
 using Integration;
 using Microsoft.EntityFrameworkCore;
 using RegistrationService.DomainInjection;
@@ -28,6 +31,7 @@ namespace TechChallenge1.DomainInjection
             ConfigurePatient(services);
             ConfigureRabbit(services);
             ConfigureIntegration(services);
+            ConfigureUser(services);
 
             return services;
         }
@@ -82,6 +86,12 @@ namespace TechChallenge1.DomainInjection
         {
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IPatientService, PatientService>();
+        }
+
+        public static void ConfigureUser(this IServiceCollection services)
+        {
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

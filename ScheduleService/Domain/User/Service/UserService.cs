@@ -22,8 +22,8 @@ namespace Domain.User.Service
 
         public async Task<string> Login(string credential, string password)
         {
-            var decryptedPass = Encrypt.TEncrypt(password);
-            var user = await _userRepository.GetFirstAsync(u => u.Credential == credential && u.Password == decryptedPass);
+            var encryptedPass = Encrypt.TEncrypt(password);
+            var user = await _userRepository.GetFirstAsync(u => u.Credential == credential && u.Password == encryptedPass);
 
             if (user == null) 
                 throw new Exception("Not found User");
