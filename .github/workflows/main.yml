@@ -1,5 +1,5 @@
 
-name: Tech-Challenge3
+name: Tech-Challenge-FIAP
 on:
   pull_request:
     branches: [ "master" ]
