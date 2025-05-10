@@ -4,6 +4,7 @@ using Domain.Schedule.Model;
 using Domain.Schedule.Model.Enum;
 using Domain.Schedule.Service;
 using Integration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RegistrationService.Controllers.Schedule.Dto;
 using Swashbuckle.AspNetCore.Annotations;
@@ -13,6 +14,7 @@ namespace TechChallenge1.Controllers.Contacts.Http
     [Route("api/[controller]")]
     [SwaggerTag("Endpoints to manage schedules")]
     [Produces("application/json")]
+    [Authorize]
     public class ScheduleController : Controller
     {
         private readonly IScheduleService _scheduleService;

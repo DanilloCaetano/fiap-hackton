@@ -4,6 +4,7 @@ using Common.MessagingService.QueuesConfig;
 using Domain.Doctor.Model;
 using Domain.Doctor.Model.Enum;
 using Domain.Doctor.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RegistrationService.Controllers.Doctor.Dto;
 using Swashbuckle.AspNetCore.Annotations;
@@ -13,6 +14,7 @@ namespace RegistrationService.Controllers.Doctor.Http
     [Route("api/[controller]")]
     [SwaggerTag("Endpoints to manage doctors")]
     [Produces("application/json")]
+    [Authorize]
     public class DoctorController : Controller
     {
         private readonly IDoctorService _doctorService;

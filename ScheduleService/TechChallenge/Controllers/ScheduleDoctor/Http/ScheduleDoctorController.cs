@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Doctor.Model;
 using Domain.Doctor.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RegistrationService.Controllers.Doctor.Dto;
 using RegistrationService.Controllers.ScheduleDoctor.Dto;
@@ -11,6 +12,7 @@ namespace RegistrationService.Controllers.ScheduleDoctor.Http
     [Route("api/schedule-doctor")]
     [SwaggerTag("Endpoints to manage schedule doctors")]
     [Produces("application/json")]
+    [Authorize]
     public class ScheduleDoctorController : Controller
     {
         private readonly IScheduleDoctorService _scheduleDoctorService;
