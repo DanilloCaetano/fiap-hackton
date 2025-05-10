@@ -2,6 +2,7 @@
 using Domain.Patient.Model;
 using Domain.Patient.Service;
 using Domain.Schedule.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RegistrationService.Controllers.Patient.Dto;
 using Swashbuckle.AspNetCore.Annotations;
@@ -11,6 +12,7 @@ namespace RegistrationService.Controllers.Patient.Http
     [Route("api/[controller]")]
     [SwaggerTag("Endpoints to manage schedules")]
     [Produces("application/json")]
+    [Authorize]
     public class PatientController : Controller
     {
         private readonly IPatientService _patientService;
